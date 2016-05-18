@@ -1,0 +1,39 @@
+{
+  "name": "chat-ui",
+  "version": "1.0.0",
+  "description": "Chat UI",
+  "main": "index.js",
+  "scripts": {
+    "build": "gulp build",
+    "pack": "gulp build --pack",
+    "watch": "gulp watch",
+    "eslint": "./node_modules/eslint/bin/eslint.js ./source/**/*.js",
+    "postinstall": "cp -i hooks/pre-commit.sh .git/hooks/pre-commit",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/artemdemo/chat-ui.git"
+  },
+  "author": "Artem Demo",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/artemdemo/chat-ui/issues"
+  },
+  "homepage": "https://github.com/artemdemo/chat-ui#readme",
+  "devDependencies": {
+    "babel": "^6.5.2",
+    "babel-core": "^6.9.0",
+    "babel-eslint": "^6.0.4",
+    "babel-loader": "^6.2.4",
+    "babel-plugin-add-module-exports": "^0.2.1",
+    "babel-preset-es2015": "^6.9.0",
+    "eslint": "^2.10.2",
+    "gulp": "^3.9.1",
+    "gulp-less": "^3.1.0",
+    "gulp-rename": "^1.2.2",
+    "gulp-util": "^3.0.7",
+    "webpack": "^1.13.0",
+    "yargs": "^4.7.1"
+  }
+}
