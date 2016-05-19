@@ -6,7 +6,7 @@ module.exports = {
     output: {
         path: __dirname + '/lib/',
         filename: 'chat-ui.js',
-        library: 'chat-ui',
+        library: 'ChatUI',
         libraryTarget: 'umd',
         umdNamedDefine: true
     },
