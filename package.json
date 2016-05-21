@@ -41,6 +41,7 @@
     "jsdom": "^9.1.0",
     "mocha": "^2.4.5",
     "webpack": "^1.13.0",
+    "wolfy87-eventemitter": "^5.0.0",
     "yargs": "^4.7.1"
   }
 }

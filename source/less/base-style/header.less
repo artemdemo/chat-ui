@@ -1,27 +1,54 @@
-#@{LIB_NAME}-header {
+#@{libName}-header {
     position: relative;
-    background-color: gray;
+    background-color: #3E4756;
     display: table;
+    width: 100%;
+    padding: 4px 2px 0 0;
 
-    .@{LIB_NAME}-header__cell {
+    .@{libName}-header__cell {
         display: table-cell;
     }
 
-    .@{LIB_NAME}-header__title {
+        .@{libName}-header__cell_image {
+            width: 80px;
+            text-align: center;
+            vertical-align: middle;
+        }
+
+        .@{libName}-header__cell_title {
+            vertical-align: middle;
+        }
+
+    .@{libName}-header__image {
+        overflow: hidden;
+        border-radius: 50%;
+        width: 70px;
+        height: 70px;
+        background-size: cover;
+        display: inline-block;
+        border: 1px solid #707680;
+    }
+
+    .@{libName}-header__title {
         color: white;
         font-weight: bold;
     }
 
-    .@{LIB_NAME}-header__subtitle {
+    .@{libName}-header__subtitle {
         color: white;
     }
 
-    .@{LIB_NAME}-header__close {
+    .@{libName}-header__close {
+        position: absolute;
+        left: -20px;
+        top: 0;
+        width: 20px;
+        height: 20px;
+        text-align: center;
+        cursor: pointer;
+
         &:after {
-            content: 'x';
-            position: absolute;
-            left: -20px;
-            top: 0;
+            content: '❌';
         }
     }
 }
