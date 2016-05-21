@@ -1,0 +1,27 @@
+#@{LIB_NAME}-header {
+    position: relative;
+    background-color: gray;
+    display: table;
+
+    .@{LIB_NAME}-header__cell {
+        display: table-cell;
+    }
+
+    .@{LIB_NAME}-header__title {
+        color: white;
+        font-weight: bold;
+    }
+
+    .@{LIB_NAME}-header__subtitle {
+        color: white;
+    }
+
+    .@{LIB_NAME}-header__close {
+        &:after {
+            content: 'x';
+            position: absolute;
+            left: -20px;
+            top: 0;
+        }
+    }
+}

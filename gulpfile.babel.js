@@ -6,9 +6,9 @@ import webpack from 'webpack';
 import webpackConfig from './webpack.config';
 import yargs from 'yargs';
 
-var args = yargs
+const args = yargs
     .options({
-        'pack': {
+        pack: {
             alias: 'min',
             describe: 'uglify code',
             boolean: true
@@ -21,7 +21,7 @@ if (args.pack) {
 
 const compiler = webpack(webpackConfig);
 
-gulp.task('js', function(callback) {
+gulp.task('js', (callback) => {
     function report(resolve, err, stats) {
         if (err) {
             throw new gutil.PluginError('webpack', err);
@@ -45,11 +45,11 @@ gulp.task('js', function(callback) {
 });
 
 
-gulp.task('js-watch', function() {
+gulp.task('js-watch', () => {
     compiler.watch({
         aggregateTimeout: 300,
         poll: true
-    }, function(err, stats) {
+    }, (err, stats) => {
         if (err) {
             throw new gutil.PluginError('webpack', err);
         }
@@ -61,15 +61,15 @@ gulp.task('js-watch', function() {
     });
 });
 
-gulp.task('less', function() {
-    return gulp.src('./source/less/styles.less')
+gulp.task('less', () => {
+    return gulp.src('./source/less/base-style.less')
         .pipe(less())
         .on('error', function(err) {
             // Handle less errors, but do not stop watch task
             gutil.log(gutil.colors.red.bold('[Less error]'));
-            gutil.log(gutil.colors.bgRed('filename:') +' '+ err.filename);
-            gutil.log(gutil.colors.bgRed('lineNumber:') +' '+ err.lineNumber);
-            gutil.log(gutil.colors.bgRed('extract:') +' '+ err.extract.join(' '));
+            gutil.log(`${gutil.colors.bgRed('filename:')} ${err.filename}`);
+            gutil.log(`${gutil.colors.bgRed('lineNumber:')} ${err.lineNumber}`);
+            gutil.log(`${gutil.colors.bgRed('extract:')} ${err.extract.join(' ')}`);
             this.emit('end');
         })
         .pipe(rename('chat-ui.css'))
