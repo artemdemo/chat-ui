@@ -34,6 +34,7 @@
         "no-case-declarations": 0,
         "no-console": ["error", { "allow": ["warn", "error"] }],
         "guard-for-in": 0,
+        "prefer-const": 0,
         "no-new-func": 0
     },
     "env": {
