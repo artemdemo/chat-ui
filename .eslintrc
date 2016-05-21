@@ -1,16 +1,40 @@
 {
+    "extends": "airbnb",
     "rules": {
-        "indent": [ "error", 4, { "SwitchCase": 1 } ],
-        "linebreak-style": [ 2, "unix" ],
-        "semi": [ 2, "always" ],
-        "keyword-spacing": [ 2, { "before": true, "after": true } ],
+        "import/no-unresolved": 0,
+        "arrow-body-style": 0,
+        "object-curly-spacing": 0,
+        "indent": ["error", 4, { "SwitchCase": 1, "VariableDeclarator": 1 }],
+        "no-return-assign": 0,  // Disallow Assignment in return Statement
+        "max-len": ["error", 120],
+        "no-shadow": 0,
+        "default-case": 0,
+        "padded-blocks": 0,
+        "linebreak-style": [2, "unix"],
+        "semi": [2, "always"],
+        "consistent-return": 0,
+        "no-use-before-define": 0,
+        "no-confusing-arrow": 0,
+        "no-param-reassign": ["error", { "props": false }],
+        "no-unused-expressions": ["error", { "allowShortCircuit": true }],
         "space-before-blocks": [ 2, "always" ],
-        "space-before-function-paren": [ 2, "never" ],
         "no-mixed-spaces-and-tabs": [ 2, "smart-tabs" ],
         "no-cond-assign": [ 0 ],
         "no-trailing-spaces": ["error", { "skipBlankLines": false }],
         "no-multiple-empty-lines": ["error", {"max": 2, "maxEOF": 1}],
-        "quotes": ["error", "single"]
+        "quotes": ["error", "single"],
+        "wrap-iife": ["error", "inside"],
+        "no-restricted-syntax": ["error", "DebuggerStatement", "WithStatement"],
+        "func-names": 0,
+        "space-before-function-paren": ["error", "never"],
+        "keyword-spacing": ["error", {"overrides": {
+            "catch": { "after": false }
+        }}],
+        "comma-dangle": ["error", "only-multiline"],
+        "no-case-declarations": 0,
+        "no-console": ["error", { "allow": ["warn", "error"] }],
+        "guard-for-in": 0,
+        "no-new-func": 0
     },
     "env": {
         "es6": true,          // enable all ECMAScript 6 features except for modules
@@ -24,7 +48,6 @@
         "prototypejs": false, // prototypejs global variables.
         "shelljs": false,     // shelljs global variables
     },
-    "extends": "eslint:recommended",
     "parserOptions": {
         "ecmaVersion": 6,
         "sourceType": "module"
