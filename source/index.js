@@ -1,11 +1,15 @@
 import {mainFrame} from './components/mainFrame';
 import {dialog} from './components/dialog';
+import {eventEmitter} from './services/eventEmitter';
+import {ADD_PHRASE} from './constants/dialog';
 
 const ChatUI = (chatData) => {
 
     const addMainFrameEvents = () => {};
 
-    const addDialogEvents = () => {};
+    const addDialogEvents = () => {
+        eventEmitter.addListener(ADD_PHRASE, dialog.addPhrase);
+    };
 
     return {
         render: (querySelector, componentName) => {
@@ -23,9 +27,17 @@ const ChatUI = (chatData) => {
                     baseEl.appendChild(mainFrameObj.renderElement(chatData).fragment);
                     break;
             }
+            addDialogEvents();
             return {
-                on: (eventName) => {},
-                trigger: (eventName) => {}
+                on: (eventName, callback) => {
+                    eventEmitter.addListener(eventName, callback);
+                },
+                off: (eventName, callback) => {
+                    eventEmitter.removeListener(eventName, callback);
+                },
+                trigger: (eventName, data) => {
+                    eventEmitter.emit(eventName, data);
+                }
             };
         }
     };
