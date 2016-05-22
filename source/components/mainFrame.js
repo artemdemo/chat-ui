@@ -1,7 +1,8 @@
-import {LIB_NAME} from '../constants';
+import {LIB_NAME} from '../constants/general';
 import {templateTreeRender} from '../services/templateTreeRender';
 import {header} from '../components/header';
 import {dialog} from '../components/dialog';
+import {input} from '../components/input';
 
 let renderedMainFrame = null;
 
@@ -48,6 +49,7 @@ export const mainFrame = () => {
                 renderedMainFrame = templateTreeRender(mainFrameObject);
                 updateContainer('header', header.renderElement(newSettings).fragment);
                 updateContainer('dialog', dialog.renderElement({}).fragment);
+                updateContainer('input', input.renderElement({}).fragment);
                 return renderedMainFrame;
             }
             throw new Error('mainFrame already exists in DOM');
