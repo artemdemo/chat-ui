@@ -156,11 +156,29 @@
     <div id="chat"></div>
 
     <script>
+        var phrases = [
+            'Ok',
+            'How can I help you?',
+            'Nice weather today, don\'t you think?',
+            'Do you want one of our representative will call you back?',
+            'Do you like our product?',
+            'Where have you heard about us?',
+            'Glad you still use our products',
+            'thank you for waiting',
+            'Hello again!',
+            ':)',
+            '^_^'
+        ];
+
         var chat = ChatUI({
             title: 'John Doe',
-            avatar: 'http://localhost/chat-ui/demo/john-doe.jpg',
+            avatar: './john-doe.jpg',
             subtitle: 'consultant'
-        }).render('#chat')
+        }).render('#chat');
+
+        // chat.trigger('add-phrase', {side: 'chat', message:'Hello'});
+        chat.trigger('add-phrase', 'Hello');
+        chat.trigger('is-typing');
     </script>
 </body>
 </html>

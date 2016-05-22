@@ -1,7 +1,7 @@
 import {mainFrame} from './components/mainFrame';
 import {dialog} from './components/dialog';
 import {eventEmitter} from './services/eventEmitter';
-import {ADD_PHRASE} from './constants/dialog';
+import {ADD_PHRASE, IS_TYPING} from './constants/dialog';
 
 const ChatUI = (chatData) => {
 
@@ -9,6 +9,11 @@ const ChatUI = (chatData) => {
 
     const addDialogEvents = () => {
         eventEmitter.addListener(ADD_PHRASE, dialog.addPhrase);
+        eventEmitter.addListener(IS_TYPING, () => {
+            dialog.addPhrase({
+                type: IS_TYPING
+            });
+        });
     };
 
     return {

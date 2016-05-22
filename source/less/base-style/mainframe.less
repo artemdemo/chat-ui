@@ -8,13 +8,40 @@
     height: 500px;
     background-color: #ffffff;
 
+    &:before,
+    &:after {
+        content: "";
+        position: absolute;
+        z-index: -1;
+        box-shadow: 0 0 15px rgba(0,0,0,0.2);
+        top: 5px;
+        bottom: 0;
+        left: 0;
+        right: 0;
+    }
+
+    &:after {
+        right: 10px;
+        left: auto;
+        transform: skew(8deg) rotate(3deg);
+    }
+
     .@{libName}-header-container {
 
     }
     .@{libName}-dialog-container {
-
+        position: absolute;
+        top: @header-height;
+        bottom: @input-height;
+        left: 0;
+        right: 0;
     }
     .@{libName}-input-container {
-
+        position: absolute;
+        height: @input-height;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        box-shadow: 0px -3px 10px -5px rgba(0, 0, 0, 0.26);
     }
 }

@@ -3,40 +3,40 @@ import {templateEngine} from '../services/templateEngine';
 import {templateTreeRender} from '../services/templateTreeRender';
 
 export const dialogBubble = (() => {
-    const className = `${LIB_NAME}-dialog-bubble`;
+    const bubbleClass = `${LIB_NAME}-dialog-bubble`;
+    const bubbleContainerClass = `${LIB_NAME}-dialog-bubble-container`;
     const innerTemplate = `
-        <div class="${LIB_NAME}-dialog-bubble__text">
-            <% message %>
-        </div>
-    `;
-    const template = `
-        <div class="${className}">
-            ${innerTemplate}
+        <div class="<% bubbleClass %>">
+            <div class="${LIB_NAME}-dialog-bubble__text">
+                <% message %>
+            </div>
         </div>
     `;
 
     return {
-        renderTemplate: (data) => {
-            return templateEngine(template, data);
-        },
-
         /**
          * Render bubble element
          * @param data {Object}
          * @param data.side {String} - 'user', 'chat'
          * @param data.message {String}
+         * @param data.type {String} - 'temporary'
          * @returns {Object}
          */
         renderElement: (data) => {
-            let bubbleClass = [];
-            bubbleClass.push(className);
+            let bubbleClasses = [];
+            bubbleClasses.push(bubbleClass);
             if (data.side) {
-                bubbleClass.push(`${className}_${data.side}`);
+                bubbleClasses.push(`${bubbleClass}_${data.side}`);
             }
+            if (data.type) {
+                bubbleClasses.push(`${bubbleClass}_${data.type}`);
+            }
+            data.bubbleClass = bubbleClasses.join(' ');
             return templateTreeRender({
                 div: {
-                    className: bubbleClass.join(' '),
-                    innerHTML: templateEngine(innerTemplate, data)
+                    className: bubbleContainerClass,
+                    innerHTML: templateEngine(innerTemplate, data),
+                    ref: 'bubbleContainer'
                 }
             });
         }

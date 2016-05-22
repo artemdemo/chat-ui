@@ -1,0 +1,43 @@
+@chat-bg-color: #caecff;
+@user-bg-color: #aff3a2;
+@temporary-bg-color: #f7f7f7;
+
+#@{libName}-dialog {
+    padding: 0 5px;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    width: 100%;
+    overflow: auto;
+
+    .@{libName}-dialog-bubble-container {
+        .clearfix()
+    }
+
+    .@{libName}-dialog-bubble {
+        background-color: transparent;
+        border: 1px solid transparent;
+        padding: 3px 5px;
+        border-radius: 4px;
+        margin: 3px 0;
+        width: 80%;
+
+        &_chat {
+            background-color: @chat-bg-color;
+            border-color: desaturate(darken(@chat-bg-color, 10%), 20%);
+            float: left;
+        }
+
+        &_user {
+            background-color: @user-bg-color;
+            border-color: desaturate(darken(@user-bg-color, 10%), 20%);
+            float: right;
+        }
+
+        &_is-typing {
+            background-color: @temporary-bg-color;
+            border-color: desaturate(darken(@temporary-bg-color, 10%), 20%);
+            width: auto;
+        }
+    }
+}

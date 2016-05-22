@@ -1,6 +1,19 @@
 @libName: chat-ui;
 
+@header-height: 80px;
+@input-height: 40px;
+
+.clearfix {
+    &:after {
+        content: '';
+        clear: both;
+        display: table;
+    }
+}
+
 @import "normalize";
+@import "base-style/dialog";
+@import "base-style/dots-loading";
 @import "base-style/header";
 @import "base-style/input";
 @import "base-style/mainframe";

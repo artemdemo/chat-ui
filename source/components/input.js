@@ -18,29 +18,22 @@ export const input = (() => {
             </button>
         </div>
     `;
-    const template = `
-        <form id="${id}">
-            ${innerTemplate}
-        </form>
-    `;
 
     const onSubmit = (event) => {
         event.preventDefault();
-        eventEmitter.emit(ADD_PHRASE, {
-            side: SIDE_USER,
-            message: inputEl.value
-        });
-        eventEmitter.emit(USER_SEND_MESSAGE, inputEl.value);
-        inputEl.value = '';
+        if (inputEl.value !== '') {
+            eventEmitter.emit(ADD_PHRASE, {
+                side: SIDE_USER,
+                message: inputEl.value
+            });
+            eventEmitter.emit(USER_SEND_MESSAGE, inputEl.value);
+            inputEl.value = '';
+        }
     };
 
     let inputEl = null;
 
     return {
-        renderTemplate: (data) => {
-            return templateEngine(template, data);
-        },
-
         renderElement: () => {
             const data = {
                 sendText: chatSettings.getProperty('sendText'),
