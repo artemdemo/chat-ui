@@ -1,4 +1,4 @@
-import {LIB_NAME} from '../constants';
+import {LIB_NAME} from '../constants/general';
 import {templateEngine} from '../services/templateEngine';
 import {templateTreeRender} from '../services/templateTreeRender';
 

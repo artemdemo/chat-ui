@@ -1,4 +1,4 @@
-import {LIB_NAME} from '../constants';
+import {LIB_NAME} from '../constants/general';
 import {templateEngine} from '../services/templateEngine';
 import {templateTreeRender} from '../services/templateTreeRender';
 
@@ -6,7 +6,7 @@ export const dialogBubble = (() => {
     const className = `${LIB_NAME}-dialog-bubble`;
     const innerTemplate = `
         <div class="${LIB_NAME}-dialog-bubble__text">
-            <% text %>
+            <% message %>
         </div>
     `;
     const template = `
