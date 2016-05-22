@@ -13,7 +13,7 @@ export const input = (() => {
             <input type="text" class="${inputClass}" placeholder="<% inputPlaceholder %>" />
         </div>
         <div class="${LIB_NAME}-input__cell">
-            <button type="submit">
+            <button type="submit" class="${LIB_NAME}-input__send">
                 <% sendText %>
             </button>
         </div>
