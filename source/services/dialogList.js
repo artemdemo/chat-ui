@@ -9,7 +9,7 @@ export const dialogList = (() => {
                 side: newPhrase.side,           // 'chat', 'user'
                 message: newPhrase.message,     // text of the message
                 ref: newPhrase.ref || null,     // bubble element reference
-                type: newPhrase.type            // 'temporary'
+                type: newPhrase.type            // 'is-typing'
             });
         },
 

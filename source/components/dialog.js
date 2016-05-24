@@ -1,5 +1,5 @@
 import {LIB_NAME} from '../constants/general';
-import {IS_TYPING} from '../constants/dialog';
+import {IS_TYPING, SIDE_USER, SIDE_CHAT} from '../constants/dialog';
 import {templateEngine} from '../services/templateEngine';
 import {templateTreeRender} from '../services/templateTreeRender';
 import {dialogList} from '../services/dialogList';
@@ -45,9 +45,10 @@ export const dialog = (() => {
             const temporaryPhrase = dialogList.getTemporaryPhrase();
             let message;
             if (temporaryPhrase && data.type === IS_TYPING) {
-                throw new Error('There is already temporary phrase in the dialog. You can\'t add another one.');
+                console.warn('There is already "is-typing" phrase in the dialog. You can\'t add another one.');
+                return;
             }
-            const side = data.side === 'user' ? 'user' : 'chat';
+            const side = data.side === SIDE_USER ? SIDE_USER : SIDE_CHAT;
             if (data.type === IS_TYPING) {
                 message = chatSettings.getProperty('isTyping');
             } else {

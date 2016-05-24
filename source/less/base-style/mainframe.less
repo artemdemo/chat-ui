@@ -7,6 +7,7 @@
     width: 300px;
     height: 500px;
     background-color: #ffffff;
+    display: none;
 
     &:before,
     &:after {
@@ -24,6 +25,10 @@
         right: 10px;
         left: auto;
         transform: skew(8deg) rotate(3deg);
+    }
+
+    &.@{libName}-mainframe_open {
+        display: block;
     }
 
     .@{libName}-header-container {

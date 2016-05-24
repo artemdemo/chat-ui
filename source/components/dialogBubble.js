@@ -19,7 +19,7 @@ export const dialogBubble = (() => {
          * @param data {Object}
          * @param data.side {String} - 'user', 'chat'
          * @param data.message {String}
-         * @param data.type {String} - 'temporary'
+         * @param data.type {String} - 'is-typing'
          * @returns {Object}
          */
         renderElement: (data) => {

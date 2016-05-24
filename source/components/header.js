@@ -1,4 +1,5 @@
 import {LIB_NAME} from '../constants/general';
+import {CLOSE_CHAT} from '../constants/header';
 import {templateEngine} from '../services/templateEngine';
 import {templateTreeRender} from '../services/templateTreeRender';
 import {eventEmitter} from '../services/eventEmitter';
@@ -27,7 +28,7 @@ export const header = (() => {
     `;
 
     const onClose = () => {
-        eventEmitter.emit('close-chat');
+        eventEmitter.emit(CLOSE_CHAT);
     };
 
     return {
