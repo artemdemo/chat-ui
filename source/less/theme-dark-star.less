@@ -1,0 +1,111 @@
+@import "general";
+
+@dialog-bg-color: #364456;
+@scrollbar-bg-color: #456172;
+@theme-color: #343D4E;
+@triangle-size: 6px;
+@bubble-bg-color-chat: #4B5B71;
+@bubble-bg-color-user: #5D7B92;
+@input-bg-color: #607D8D;
+
+#@{libName}-mainframe {
+    .@{libName}-dialog-container {
+        top: 70px;
+        background-color: @dialog-bg-color;
+    }
+}
+
+#@{libName}-header {
+    background-color: @theme-color;
+    border-bottom: 1px solid #2D333E;
+
+    .@{libName}-header__image {
+        width: 60px;
+        height: 60px;
+        border-color: #626977;
+    }
+}
+
+.@{libName}-input-container {
+    background-color: @input-bg-color;
+}
+
+#@{libName}-input {
+    .@{libName}-input__input-field {
+        border: none;
+        outline: none;
+        color: #ffffff;
+        background-color: @input-bg-color;
+    }
+
+    .@{libName}-input__send {
+        border: none;
+        color: white;
+        outline: none;
+        background-color: darken(@input-bg-color, 8%);
+    }
+}
+
+#@{libName}-dialog {
+    background: linear-gradient(@dialog-bg-color 30%, transparent) 0 0,
+    radial-gradient(ellipse 59% 5px at 50% 15%, rgba(0, 0, 0, 0.20) 0%, rgba(0, 0, 0, 0) 100%) 0 0,
+    linear-gradient(transparent, @dialog-bg-color 30%) bottom,
+    radial-gradient(ellipse 59% 5px at 50% 85%, rgba(0, 0, 0, 0.08) 0%, rgba(0, 0, 0, 0) 100%) bottom;
+
+    &::-webkit-scrollbar-track {
+        background-color: @scrollbar-bg-color;
+        border-left: 1px solid @scrollbar-bg-color;
+    }
+    &::-webkit-scrollbar-thumb {
+        background-color: darken(@scrollbar-bg-color, 8%);
+    }
+    &::-webkit-scrollbar-thumb:hover {
+        background-color: darken(@scrollbar-bg-color, 13%);
+    }
+
+    .chat-ui-dialog-bubble {
+        position: relative;
+        border: 0;
+        padding: 5px 7px;
+        color: #ffffff;
+        box-shadow: 0 3px 0 -1px rgba(0, 0, 0, 0.08);
+
+        &:before {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 0;
+            top: 5px;
+        }
+    }
+
+    .@{libName}-dialog-bubble_chat {
+        margin-left: @triangle-size;
+
+        &:before {
+            left: -@triangle-size;
+            border-top: @triangle-size solid transparent;
+            border-bottom: @triangle-size solid transparent;
+            border-right: @triangle-size solid @bubble-bg-color-chat;
+        }
+    }
+
+    .@{libName}-dialog-bubble_user {
+        margin-right: @triangle-size;
+
+        &:before {
+            right: -@triangle-size;
+            border-top: @triangle-size solid transparent;
+            border-bottom: @triangle-size solid transparent;
+            border-left: @triangle-size solid @bubble-bg-color-user;
+        }
+    }
+
+    .@{libName}-dialog-bubble_chat {
+        background-color: @bubble-bg-color-chat;
+    }
+    .@{libName}-dialog-bubble_user {
+        color: #ffffff;
+        background-color: @bubble-bg-color-user;
+    }
+}

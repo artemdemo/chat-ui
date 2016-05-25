@@ -4,16 +4,16 @@
 @scrollbar-bg-color: #F3F3F3;
 
 #@{libName}-dialog {
-    padding: 0 5px;
+    padding: 0 5px 10px 5px;
     position: absolute;
     top: 0;
     bottom: 0;
     width: 100%;
     overflow: auto;
 
-    background: linear-gradient(white 30%, transparent) 0 0,
+    background: linear-gradient(@dialog-bg-color 30%, transparent) 0 0,
                 radial-gradient(ellipse 59% 5px at 50% 15%, rgba(0, 0, 0, 0.20) 0%, rgba(0, 0, 0, 0) 100%) 0 0,
-                linear-gradient(transparent, white 30%) bottom,
+                linear-gradient(transparent, @dialog-bg-color 30%) bottom,
                 radial-gradient(ellipse 59% 5px at 50% 85%, rgba(0, 0, 0, 0.08) 0%, rgba(0, 0, 0, 0) 100%) bottom;
     background-repeat: no-repeat;
     background-size: 100% 50px, 100% 15px, 100% 50px, 100% 15px;
@@ -34,7 +34,7 @@
     }
 
     .@{libName}-dialog-bubble-container {
-        .clearfix()
+        .chat-ui-clearfix()
     }
 
     .@{libName}-dialog-bubble {

@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Chat-UI | Example - Themes</title>
+    <script async src="../lib/chat-ui.js"></script>
+    <link href="../lib/chat-ui.css" rel="stylesheet" media="all" />
+
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet">
+
+    <style>
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h3>Themes:</h3>
+    <button type="button" class="btn btn-primary change-theme" data-theme="basic">
+        Basic
+    </button>
+    <button type="button" class="btn btn-primary change-theme" data-theme="dark-star">
+        Dark star
+    </button>
+    <button type="button" class="btn btn-primary change-theme" data-theme="green-leaf">
+        Green leaf
+    </button>
+    <button type="button" class="btn btn-primary change-theme" data-theme="white-bill">
+        White bill
+    </button>
+
+    <div id="chat"></div>
+</div>
+
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
+<script>
+    var themes = {
+        'basic': null,
+        'dark-star': '../lib/theme-dark-star.css',
+        'green-leaf': '../lib/theme-green-leaf.css',
+        'white-bill': '../lib/theme-white-bill.css'
+    };
+    var currentTheme;
+
+    $('.change-theme').click(function() {
+        var theme = $(this).data().theme;
+        if (currentTheme) {
+            $('#' + currentTheme).remove();
+        }
+        if (themes[theme]) {
+            $('head').append([
+                '<link href="',
+                themes[theme],
+                '" id="',
+                theme,
+                '" rel="stylesheet" media="all" />'
+            ].join(''));
+
+            currentTheme = theme;
+        }
+    });
+
+    $(document).ready(function() {
+        var phrases = [
+            'Ok',
+            'How can I help you?',
+            'Nice weather today, don\'t you think?',
+            'Do you want one of our representative will call you back?',
+            'Do you like our product?',
+            'Where have you heard about us?',
+            'Glad you still use our products',
+            'thank you for waiting',
+            'Hello again!',
+            ':)',
+            '^_^'
+        ];
+
+        var chat = ChatUI({
+            title: 'John Doe',
+            avatar: './john-doe.jpg',
+            subtitle: 'consultant'
+        }).render('#chat');
+
+        var chatIcon = document.getElementById('chat-icon');
+
+        chat.trigger('open-chat');
+
+        // chat.trigger('add-phrase', {side: 'chat', message:'Hello'});
+        // chat.trigger('add-phrase', {message:'Hello'});
+        chat.trigger('add-phrase', 'Hello');
+
+        var timeoutId = null;
+        var chatMessage = function(msg) {
+            if (msg === 'close') {
+                chat.trigger('close-chat');
+            } else if (msg === 'clear') {
+                chat.trigger('clear-dialog');
+            } else if (!timeoutId) {
+                var waitTime = Math.floor(Math.random() * 2000) + 600;
+                chat.trigger('is-typing');
+                timeoutId = setTimeout(function() {
+                    var phraseNumber = Math.floor(Math.random() * (phrases.length - 1));
+                    chat.trigger('add-phrase', phrases[phraseNumber]);
+                    timeoutId = null;
+                }, waitTime);
+            }
+        };
+        chatMessage();
+        chat.on('user-send-message', chatMessage);
+
+        chat.on('chat-closed', function(data) {
+            console.log('chat-closed', data);
+            chatIcon.style.display = 'block';
+        });
+    });
+</script>
+</body>
+</html>

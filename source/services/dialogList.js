@@ -36,6 +36,10 @@ export const dialogList = (() => {
                 }
             }
             return null;
+        },
+
+        clearDialog: () => {
+            dialog = [];
         }
     };
 })();

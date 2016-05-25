@@ -1,9 +1,12 @@
+@header-bg-color: #3E4756;
+
 #@{libName}-header {
     position: relative;
-    background-color: #3E4756;
+    background-color: @header-bg-color;
     display: table;
     width: 100%;
     padding: 4px 2px 0 0;
+    border-bottom: 1px solid @header-bg-color;
 
     .@{libName}-header__cell {
         display: table-cell;
@@ -16,6 +19,7 @@
         }
 
         .@{libName}-header__cell_title {
+            color: white;
             vertical-align: middle;
         }
 
@@ -30,12 +34,11 @@
     }
 
     .@{libName}-header__title {
-        color: white;
         font-weight: bold;
     }
 
     .@{libName}-header__subtitle {
-        color: white;
+        font-weight: normal;
     }
 
     .@{libName}-header__close {

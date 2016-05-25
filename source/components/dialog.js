@@ -1,9 +1,10 @@
 import {LIB_NAME} from '../constants/general';
-import {IS_TYPING, SIDE_USER, SIDE_CHAT} from '../constants/dialog';
+import {IS_TYPING, SIDE_USER, SIDE_CHAT, CLEAR_DIALOG} from '../constants/dialog';
 import {templateEngine} from '../services/templateEngine';
 import {templateTreeRender} from '../services/templateTreeRender';
 import {dialogList} from '../services/dialogList';
 import {chatSettings} from '../services/chatSettings';
+import {eventEmitter} from '../services/eventEmitter';
 import {dialogBubble} from './dialogBubble';
 
 export const dialog = (() => {
@@ -20,6 +21,13 @@ export const dialog = (() => {
         dialogEl.scrollTop = dialogEl.scrollHeight;
     };
 
+    const addEvents = () => {
+        eventEmitter.on(CLEAR_DIALOG, () => {
+            dialogListEl.innerHTML = '';
+            dialogList.clearDialog();
+        });
+    };
+
     return {
         renderElement: (data) => {
             const dialogRendered = templateTreeRender({
@@ -34,6 +42,7 @@ export const dialog = (() => {
             if ($$dialogListEl) {
                 dialogListEl = $$dialogListEl[0];
             }
+            addEvents();
             return dialogRendered;
         },
 

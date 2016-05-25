@@ -8,9 +8,10 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>Chat-UI | Example</title>
+    <title>Chat-UI | Example - Context</title>
     <script async src="../lib/chat-ui.js"></script>
     <link href="../lib/chat-ui.css" rel="stylesheet" media="all" />
+    <link href="../lib/theme-dark-star.css" rel="stylesheet" media="all" />
 
     <!-- Bootstrap core CSS -->
     <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet">
@@ -219,6 +220,8 @@
         var chatMessage = function(msg) {
             if (msg === 'close') {
                 chat.trigger('close-chat');
+            } else if (msg === 'clear') {
+                chat.trigger('clear-dialog');
             } else if (!timeoutId) {
                 var waitTime = Math.floor(Math.random() * 2000) + 600;
                 chat.trigger('is-typing');

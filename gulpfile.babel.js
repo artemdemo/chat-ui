@@ -62,16 +62,36 @@ gulp.task('js-watch', () => {
 });
 
 gulp.task('less', () => {
+    const errorHandling = function(err) {
+        // Handle less errors, but do not stop watch task
+        gutil.log(gutil.colors.red.bold('[Less error]'));
+        gutil.log(`${gutil.colors.bgRed('filename:')} ${err.filename}`);
+        gutil.log(`${gutil.colors.bgRed('lineNumber:')} ${err.lineNumber}`);
+        gutil.log(`${gutil.colors.bgRed('extract:')} ${err.extract.join(' ')}`);
+        this.emit('end');
+    };
+
+    gulp.src('./source/less/theme-green-leaf.less')
+        .pipe(less())
+        .on('error', errorHandling)
+        .pipe(rename('theme-green-leaf.css'))
+        .pipe(gulp.dest('./lib'));
+
+    gulp.src('./source/less/theme-white-bill.less')
+        .pipe(less())
+        .on('error', errorHandling)
+        .pipe(rename('theme-white-bill.css'))
+        .pipe(gulp.dest('./lib'));
+
+    gulp.src('./source/less/theme-dark-star.less')
+        .pipe(less())
+        .on('error', errorHandling)
+        .pipe(rename('theme-dark-star.css'))
+        .pipe(gulp.dest('./lib'));
+
     return gulp.src('./source/less/base-style.less')
         .pipe(less())
-        .on('error', function(err) {
-            // Handle less errors, but do not stop watch task
-            gutil.log(gutil.colors.red.bold('[Less error]'));
-            gutil.log(`${gutil.colors.bgRed('filename:')} ${err.filename}`);
-            gutil.log(`${gutil.colors.bgRed('lineNumber:')} ${err.lineNumber}`);
-            gutil.log(`${gutil.colors.bgRed('extract:')} ${err.extract.join(' ')}`);
-            this.emit('end');
-        })
+        .on('error', errorHandling)
         .pipe(rename('chat-ui.css'))
         .pipe(gulp.dest('./lib'));
 });

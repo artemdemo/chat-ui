@@ -52,6 +52,10 @@ export const input = (() => {
                 inputEl = $$inputEl[0];
             }
             return inputFormRendered;
+        },
+
+        setFocus: () => {
+            inputEl.focus();
         }
     };
 })();
