@@ -179,8 +179,25 @@
         chat.trigger('open-chat');
 
         // chat.trigger('add-phrase', {side: 'chat', message:'Hello'});
+        // chat.trigger('add-phrase', {message:'Hello'});
         chat.trigger('add-phrase', 'Hello');
-        chat.trigger('is-typing');
+
+        var timeoutId = null;
+        chat.on('user-send-message', function(msg) {
+            if (!timeoutId) {
+                var waitTime = Math.floor(Math.random() * 2000) + 600;
+                chat.trigger('is-typing');
+                timeoutId = setTimeout(function() {
+                    var phraseNumber = Math.floor(Math.random() * (phrases.length - 1));
+                    chat.trigger('add-phrase', phrases[phraseNumber]);
+                    timeoutId = null;
+                }, waitTime);
+            }
+        });
+
+        chat.on('close-chat', function() {
+            console.log('close-chat');
+        });
     </script>
 </body>
 </html>
