@@ -14,6 +14,11 @@ export const dialog = (() => {
     `;
 
     let dialogListEl = null;
+    let dialogEl = null;
+
+    const scrollDialogDown = function() {
+        dialogEl.scrollTop = dialogEl.scrollHeight;
+    };
 
     return {
         renderElement: (data) => {
@@ -24,7 +29,8 @@ export const dialog = (() => {
                     ref: 'dialogEl'
                 }
             });
-            const $$dialogListEl = dialogRendered.refs.dialogEl.getElementsByClassName(`${LIB_NAME}-dialog-list`);
+            dialogEl = dialogRendered.refs.dialogEl;
+            const $$dialogListEl = dialogEl.getElementsByClassName(`${LIB_NAME}-dialog-list`);
             if ($$dialogListEl) {
                 dialogListEl = $$dialogListEl[0];
             }
@@ -73,6 +79,7 @@ export const dialog = (() => {
                 ref: data.type === IS_TYPING ? renderedBubble.refs.bubbleContainer : null,
                 type: data.type
             });
+            scrollDialogDown();
         }
     };
 })();

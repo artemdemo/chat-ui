@@ -1,5 +1,5 @@
 import {LIB_NAME} from '../constants/general';
-import {CLOSE_CHAT, OPEN_CHAT} from '../constants/header';
+import {CLOSE_CHAT, OPEN_CHAT, CHAT_CLOSED, CHAT_CLOSED_SOURCE_CHAT} from '../constants/header';
 import {templateTreeRender} from '../services/templateTreeRender';
 import {header} from '../components/header';
 import {dialog} from '../components/dialog';
@@ -49,8 +49,10 @@ export const mainFrame = () => {
     const addEvents = (mainFrameEl) => {
         const openChatClass = `${LIB_NAME}-mainframe_open`;
 
-        eventEmitter.on(CLOSE_CHAT, () => {
+        eventEmitter.on(CLOSE_CHAT, (data) => {
+            const closeSource = data && data.source ? data.source : CHAT_CLOSED_SOURCE_CHAT;
             domHelper.removeClass(mainFrameEl, openChatClass);
+            eventEmitter.emit(CHAT_CLOSED, {source: closeSource});
         });
 
         eventEmitter.on(OPEN_CHAT, () => {

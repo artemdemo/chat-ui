@@ -1,5 +1,5 @@
 import {LIB_NAME} from '../constants/general';
-import {CLOSE_CHAT} from '../constants/header';
+import {CLOSE_CHAT, CHAT_CLOSED_SOURCE_USER} from '../constants/header';
 import {templateEngine} from '../services/templateEngine';
 import {templateTreeRender} from '../services/templateTreeRender';
 import {eventEmitter} from '../services/eventEmitter';
@@ -28,7 +28,8 @@ export const header = (() => {
     `;
 
     const onClose = () => {
-        eventEmitter.emit(CLOSE_CHAT);
+        // Event for mainframe to close the chat (remove 'open' class)
+        eventEmitter.emit(CLOSE_CHAT, {source: CHAT_CLOSED_SOURCE_USER});
     };
 
     return {

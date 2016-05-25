@@ -96,6 +96,32 @@
         }
     </style>
 
+    <style>
+        #chat-icon {
+            position: fixed;
+            right: 20px;
+            bottom: 20px;
+            cursor: pointer;
+            background-image: url('chat-icon.png');
+            background-size: cover;
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            box-shadow: 0 0 10px 10px #D5F2FF;
+        }
+        #chat-icon::before {
+            content: 'click me';
+            position: absolute;
+            top: -9px;
+            left: -25px;
+            font-size: 1.1em;
+            border: 1px solid #797676;
+            padding: 1px 6px;
+            background-color: #ffffff;
+            border-radius: 8px;
+        }
+    </style>
+
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
     <!--[if lt IE 9]>
     <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
@@ -153,6 +179,8 @@
 
 </div>
 
+    <div id="chat-icon"></div>
+
     <div id="chat"></div>
 
     <script>
@@ -176,15 +204,22 @@
             subtitle: 'consultant'
         }).render('#chat');
 
-        chat.trigger('open-chat');
+        var chatIcon = document.getElementById('chat-icon');
+
+        chatIcon.addEventListener('click', function(){
+            chat.trigger('open-chat');
+            chatIcon.style.display = 'none';
+        });
 
         // chat.trigger('add-phrase', {side: 'chat', message:'Hello'});
         // chat.trigger('add-phrase', {message:'Hello'});
         chat.trigger('add-phrase', 'Hello');
 
         var timeoutId = null;
-        chat.on('user-send-message', function(msg) {
-            if (!timeoutId) {
+        var chatMessage = function(msg) {
+            if (msg === 'close') {
+                chat.trigger('close-chat');
+            } else if (!timeoutId) {
                 var waitTime = Math.floor(Math.random() * 2000) + 600;
                 chat.trigger('is-typing');
                 timeoutId = setTimeout(function() {
@@ -193,10 +228,13 @@
                     timeoutId = null;
                 }, waitTime);
             }
-        });
+        };
+        chatMessage();
+        chat.on('user-send-message', chatMessage);
 
-        chat.on('close-chat', function() {
-            console.log('close-chat');
+        chat.on('chat-closed', function(data) {
+            console.log('chat-closed', data);
+            chatIcon.style.display = 'block';
         });
     </script>
 </body>
