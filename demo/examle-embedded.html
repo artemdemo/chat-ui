@@ -2,63 +2,48 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Chat-UI | Example - Themes</title>
+    <title>Chat-UI | Example - Embedded</title>
     <script async src="../lib/chat-ui.js"></script>
     <link href="../lib/chat-ui.css" rel="stylesheet" media="all" />
 
     <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet">
 
     <style>
+        #chat {
+            width: 370px;
+            height: 500px;
+            margin: 20px auto 0 auto;
+            border: 1px solid #BFBFBF;
+            border-radius: 5px;
+            position: relative;
+            box-shadow: 0 0 7px #DCDCDC;
+            overflow: auto;
+        }
+        #input {
+            width: 370px;
+            margin: 5px auto 0 auto;
+            border: 1px solid #BFBFBF;
+            padding: 5px;
+            border-radius: 5px;
+            position: relative;
+            box-shadow: 0 0 7px #DCDCDC;
+        }
+        #chat-ui-dialog {
+            background: transparent;
+        }
     </style>
 </head>
 <body>
-
-<div class="container">
-    <h3>Themes:</h3>
-    <button type="button" class="btn btn-primary change-theme" data-theme="basic">
-        Basic
-    </button>
-    <button type="button" class="btn btn-primary change-theme" data-theme="dark-star">
-        Dark star
-    </button>
-    <button type="button" class="btn btn-primary change-theme" data-theme="green-leaf">
-        Green leaf
-    </button>
-    <button type="button" class="btn btn-primary change-theme" data-theme="white-bill">
-        White bill
-    </button>
-
-    <div id="chat"></div>
-</div>
+    <div class="container">
+        <h3>Embedded chat</h3>
+        <div id="chat"></div>
+        <div id="input">
+            scsc
+        </div>
+    </div>
 
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
 <script>
-    var themes = {
-        'basic': null,
-        'dark-star': '../lib/theme-dark-star.css',
-        'green-leaf': '../lib/theme-green-leaf.css',
-        'white-bill': '../lib/theme-white-bill.css'
-    };
-    var currentTheme;
-
-    $('.change-theme').click(function() {
-        var theme = $(this).data().theme;
-        if (currentTheme) {
-            $('#' + currentTheme).remove();
-        }
-        if (themes[theme]) {
-            $('head').append([
-                '<link href="',
-                themes[theme],
-                '" id="',
-                theme,
-                '" rel="stylesheet" media="all" />'
-            ].join(''));
-
-            currentTheme = theme;
-        }
-    });
-
     $(document).ready(function() {
         var phrases = [
             'Ok',
@@ -78,7 +63,7 @@
             title: 'John Doe',
             avatar: './john-doe.jpg',
             subtitle: 'consultant'
-        }).render('#chat');
+        }).render('#chat', 'dialog');
 
         var chatIcon = document.getElementById('chat-icon');
 

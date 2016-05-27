@@ -38,12 +38,15 @@
     }
 
     .@{libName}-dialog-bubble {
+        position: relative;
         background-color: transparent;
         border: 1px solid transparent;
         padding: 3px 5px;
         border-radius: 4px;
         margin: 3px 0;
         width: 80%;
+        animation-name: chat-ui-fade-up;
+        animation-duration: 0.3s;
 
         &_chat {
             background-color: @chat-bg-color;
@@ -62,5 +65,16 @@
             border-color: desaturate(darken(@temporary-bg-color, 10%), 20%);
             width: auto;
         }
+    }
+}
+
+@keyframes chat-ui-fade-up {
+    from {
+        top: 5px;
+        opacity: 0;
+    }
+    to {
+        top: 0;
+        opacity: 1;
     }
 }
