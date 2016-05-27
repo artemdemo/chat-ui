@@ -23,5 +23,6 @@ Module for Chat UI representation
 
 ### Libraries
 
-* Bean - an events api library [github:bean](https://github.com/fat/bean), [npm:bean](https://www.npmjs.com/package/bean)
 * EventEmitter - evented JavaScript for the browser [github:wolfy87-eventemitter](https://github.com/Olical/EventEmitter), [npm:wolfy87-eventemitter](https://www.npmjs.com/package/wolfy87-eventemitter)
+* sanitize-html - Clean up user-submitted HTML, preserving whitelisted elements and whitelisted attributes on a per-element basis,
+[npm:sanitize-html](https://www.npmjs.com/package/sanitize-html)

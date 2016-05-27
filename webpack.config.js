@@ -16,6 +16,10 @@ module.exports = {
                 test: /(\.jsx|\.js)$/,
                 loader: 'babel',
                 exclude: /(node_modules|bower_components)/
+            },
+            {
+                test: /(\.json)$/,
+                loader: 'json-loader'
             }
         ]
     },

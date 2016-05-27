@@ -1,3 +1,4 @@
+import sanitizeHtml from 'sanitize-html';
 import {LIB_NAME} from '../constants/general';
 import {IS_TYPING, SIDE_USER, SIDE_CHAT, CLEAR_DIALOG} from '../constants/dialog';
 import {templateEngine} from '../services/templateEngine';
@@ -67,7 +68,10 @@ export const dialog = (() => {
             if (data.type === IS_TYPING) {
                 message = chatSettings.getProperty('isTyping');
             } else {
-                message = typeof data === 'string' ? data : data.message;
+                message = sanitizeHtml(
+                    typeof data === 'string' ? data : data.message,
+                    chatSettings.getProperty('sanitizeOptions')
+                );
             }
             const renderedBubble = dialogBubble.renderElement({
                 side,

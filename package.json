@@ -40,7 +40,9 @@
     "gulp-rename": "^1.2.2",
     "gulp-util": "^3.0.7",
     "jsdom": "^9.1.0",
+    "json-loader": "^0.5.4",
     "mocha": "^2.4.5",
+    "sanitize-html": "^1.11.4",
     "webpack": "^1.13.0",
     "wolfy87-eventemitter": "^5.0.0",
     "yargs": "^4.7.1"
