@@ -1,0 +1,541 @@
+.chat-ui-clearfix:after {
+  content: '';
+  clear: both;
+  display: table;
+}
+#chat-ui-dialog {
+  padding: 0 5px 10px 5px;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 100%;
+  overflow: auto;
+  background: linear-gradient(#ffffff 30%, transparent) 0 0, radial-gradient(ellipse 59% 5px at 50% 15%, rgba(0, 0, 0, 0.2) 0%, rgba(0, 0, 0, 0) 100%) 0 0, linear-gradient(transparent, #ffffff 30%) bottom, radial-gradient(ellipse 59% 5px at 50% 85%, rgba(0, 0, 0, 0.08) 0%, rgba(0, 0, 0, 0) 100%) bottom;
+  background-repeat: no-repeat;
+  background-size: 100% 50px, 100% 15px, 100% 50px, 100% 15px;
+  background-attachment: local, scroll, local, scroll;
+}
+#chat-ui-dialog::-webkit-scrollbar {
+  width: 8px;
+}
+#chat-ui-dialog::-webkit-scrollbar-track {
+  background-color: #F3F3F3;
+  border-left: 1px solid #F3F3F3;
+}
+#chat-ui-dialog::-webkit-scrollbar-thumb {
+  background-color: #dfdfdf;
+}
+#chat-ui-dialog::-webkit-scrollbar-thumb:hover {
+  background-color: #d2d2d2;
+}
+#chat-ui-dialog .chat-ui-dialog-bubble-container:after {
+  content: '';
+  clear: both;
+  display: table;
+}
+#chat-ui-dialog .chat-ui-dialog-bubble {
+  position: relative;
+  background-color: transparent;
+  border: 1px solid transparent;
+  padding: 3px 5px;
+  border-radius: 4px;
+  margin: 3px 0;
+  width: 80%;
+  animation-name: chat-ui-fade-up;
+  animation-duration: 0.3s;
+}
+#chat-ui-dialog .chat-ui-dialog-bubble_chat {
+  background-color: #caecff;
+  border-color: #a1d7f5;
+  float: left;
+}
+#chat-ui-dialog .chat-ui-dialog-bubble_user {
+  background-color: #aff3a2;
+  border-color: #93de84;
+  float: right;
+}
+#chat-ui-dialog .chat-ui-dialog-bubble_is-typing {
+  background-color: #f7f7f7;
+  border-color: #dedede;
+  width: auto;
+}
+@keyframes chat-ui-fade-up {
+  from {
+    top: 5px;
+    opacity: 0;
+  }
+  to {
+    top: 0;
+    opacity: 1;
+  }
+}
+/*
+<div class="dots-loading">
+    <span class="dots-loading__dot">&#8226;</span>
+    <span class="dots-loading__dot">&#8226;</span>
+    <span class="dots-loading__dot">&#8226;</span>
+</div>
+*/
+.chat-ui-dots-loading::after {
+  content: '';
+  clear: both;
+  display: table;
+}
+.chat-ui-dots-loading .dots-loading__dot {
+  float: left;
+  display: inline-block;
+  margin-left: 1px;
+  animation: dots-animation 0.8s infinite;
+}
+.chat-ui-dots-loading .dots-loading__dot:nth-of-type(2) {
+  animation-delay: 0.26666667s;
+}
+.chat-ui-dots-loading .dots-loading__dot:nth-of-type(3) {
+  animation-delay: 0.53333333s;
+}
+@keyframes dots-animation {
+  0% {
+    color: #000000;
+  }
+  50% {
+    color: #aaaaaa;
+  }
+  100% {
+    color: #000000;
+  }
+}
+#chat-ui-header {
+  position: relative;
+  background-color: #3E4756;
+  display: table;
+  width: 100%;
+  padding: 4px 2px 0 0;
+  border-bottom: 1px solid #3E4756;
+}
+#chat-ui-header .chat-ui-header__cell {
+  display: table-cell;
+}
+#chat-ui-header .chat-ui-header__cell_image {
+  width: 80px;
+  text-align: center;
+  vertical-align: middle;
+}
+#chat-ui-header .chat-ui-header__cell_title {
+  color: white;
+  vertical-align: middle;
+}
+#chat-ui-header .chat-ui-header__image {
+  overflow: hidden;
+  border-radius: 50%;
+  width: 70px;
+  height: 70px;
+  background-size: cover;
+  display: inline-block;
+  border: 1px solid #707680;
+}
+#chat-ui-header .chat-ui-header__title {
+  font-weight: bold;
+}
+#chat-ui-header .chat-ui-header__subtitle {
+  font-weight: normal;
+}
+#chat-ui-header .chat-ui-header__close {
+  position: absolute;
+  left: -20px;
+  top: 0;
+  width: 20px;
+  height: 20px;
+  text-align: center;
+  cursor: pointer;
+}
+#chat-ui-header .chat-ui-header__close:after {
+  content: '❌';
+}
+#chat-ui-input {
+  display: table;
+  width: 100%;
+}
+#chat-ui-input .chat-ui-input__cell {
+  display: table-cell;
+  padding: 5px 3px;
+}
+#chat-ui-input .chat-ui-input__input-field {
+  width: 100%;
+  padding: 3px 5px;
+  border-radius: 3px;
+  border: 1px solid #B9B9B9;
+}
+#chat-ui-input .chat-ui-input__send {
+  width: 100%;
+  padding: 3px;
+  border-radius: 3px;
+  border: 1px solid #B9B9B9;
+}
+#chat-ui-mainframe {
+  /**
+     * Add the correct display in IE 9-.
+     */
+  /**
+     * Add the correct display in iOS 4-7.
+     */
+  /**
+     * Add the correct vertical alignment in Chrome, Firefox, and Opera.
+     */
+  /**
+     * Add the correct display in IE 10-.
+     * 1. Add the correct display in IE.
+     */
+  /* Links
+       ========================================================================== */
+  /**
+     * 1. Remove the gray background on active links in IE 10.
+     * 2. Remove gaps in links underline in iOS 8+ and Safari 8+.
+     */
+  /**
+     * Remove the outline on focused links when they are also active or hovered
+     * in all browsers (opinionated).
+     */
+  /* Text-level semantics
+       ========================================================================== */
+  /**
+     * 1. Remove the bottom border in Firefox 39-.
+     * 2. Add the correct text decoration in Chrome, Edge, IE, Opera, and Safari.
+     */
+  /**
+     * Prevent the duplicate application of `bolder` by the next rule in Safari 6.
+     */
+  /**
+     * Add the correct font weight in Chrome, Edge, and Safari.
+     */
+  /**
+     * Add the correct font style in Android 4.3-.
+     */
+  /**
+     * Correct the font size and margin on `h1` elements within `section` and
+     * `article` contexts in Chrome, Firefox, and Safari.
+     */
+  /**
+     * Add the correct background and color in IE 9-.
+     */
+  /**
+     * Add the correct font size in all browsers.
+     */
+  /**
+     * Prevent `sub` and `sup` elements from affecting the line height in
+     * all browsers.
+     */
+  /* Embedded content
+       ========================================================================== */
+  /**
+     * Remove the border on images inside links in IE 10-.
+     */
+  /**
+     * Hide the overflow in IE.
+     */
+  /* Grouping content
+       ========================================================================== */
+  /**
+     * 1. Correct the inheritance and scaling of font size in all browsers.
+     * 2. Correct the odd `em` font sizing in all browsers.
+     */
+  /**
+     * Add the correct margin in IE 8.
+     */
+  /**
+     * 1. Add the correct box sizing in Firefox.
+     * 2. Show the overflow in Edge and IE.
+     */
+  /* Forms
+       ========================================================================== */
+  /**
+     * 1. Change font properties to `inherit` in all browsers (opinionated).
+     * 2. Remove the margin in Firefox and Safari.
+     */
+  /**
+     * Restore the font weight unset by the previous rule.
+     */
+  /**
+     * Show the overflow in IE.
+     * 1. Show the overflow in Edge.
+     */
+  /**
+     * Remove the inheritance of text transform in Edge, Firefox, and IE.
+     * 1. Remove the inheritance of text transform in Firefox.
+     */
+  /**
+     * 1. Prevent a WebKit bug where (2) destroys native `audio` and `video`
+     *    controls in Android 4.
+     * 2. Correct the inability to style clickable types in iOS and Safari.
+     */
+  /**
+     * Remove the inner border and padding in Firefox.
+     */
+  /**
+     * Restore the focus styles unset by the previous rule.
+     */
+  /**
+     * Change the border, margin, and padding in all browsers (opinionated).
+     */
+  /**
+     * 1. Correct the text wrapping in Edge and IE.
+     * 2. Correct the color inheritance from `fieldset` elements in IE.
+     * 3. Remove the padding so developers are not caught out when they zero out
+     *    `fieldset` elements in all browsers.
+     */
+  /**
+     * Remove the default vertical scrollbar in IE.
+     */
+  /**
+     * 1. Add the correct box sizing in IE 10-.
+     * 2. Remove the padding in IE 10-.
+     */
+  /**
+     * Correct the cursor style of increment and decrement buttons in Chrome.
+     */
+  /**
+     * 1. Correct the odd appearance in Chrome and Safari.
+     * 2. Correct the outline style in Safari.
+     */
+  /**
+     * Remove the inner padding and cancel buttons in Chrome and Safari on OS X.
+     */
+  /**
+     * Correct the text style of placeholders in Chrome, Edge, and Safari.
+     */
+  /**
+     * 1. Correct the inability to style clickable types in iOS and Safari.
+     * 2. Change font properties to `inherit` in Safari.
+     */
+  position: fixed;
+  bottom: 0;
+  right: 20px;
+  width: 300px;
+  height: 500px;
+  background-color: #ffffff;
+  display: none;
+}
+#chat-ui-mainframe audio,
+#chat-ui-mainframe canvas,
+#chat-ui-mainframe progress,
+#chat-ui-mainframe video {
+  display: inline-block;
+}
+#chat-ui-mainframe audio:not([controls]) {
+  display: none;
+  height: 0;
+}
+#chat-ui-mainframe progress {
+  vertical-align: baseline;
+}
+#chat-ui-mainframe template,
+#chat-ui-mainframe [hidden] {
+  display: none;
+}
+#chat-ui-mainframe a {
+  background-color: transparent;
+  /* 1 */
+  -webkit-text-decoration-skip: objects;
+  /* 2 */
+}
+#chat-ui-mainframe a:active,
+#chat-ui-mainframe a:hover {
+  outline-width: 0;
+}
+#chat-ui-mainframe abbr[title] {
+  border-bottom: none;
+  /* 1 */
+  text-decoration: underline;
+  /* 2 */
+  text-decoration: underline dotted;
+  /* 2 */
+}
+#chat-ui-mainframe b,
+#chat-ui-mainframe strong {
+  font-weight: inherit;
+}
+#chat-ui-mainframe b,
+#chat-ui-mainframe strong {
+  font-weight: bolder;
+}
+#chat-ui-mainframe dfn {
+  font-style: italic;
+}
+#chat-ui-mainframe h1 {
+  font-size: 2em;
+  margin: 0.67em 0;
+}
+#chat-ui-mainframe mark {
+  background-color: #ff0;
+  color: #000;
+}
+#chat-ui-mainframe small {
+  font-size: 80%;
+}
+#chat-ui-mainframe sub,
+#chat-ui-mainframe sup {
+  font-size: 75%;
+  line-height: 0;
+  position: relative;
+  vertical-align: baseline;
+}
+#chat-ui-mainframe sub {
+  bottom: -0.25em;
+}
+#chat-ui-mainframe sup {
+  top: -0.5em;
+}
+#chat-ui-mainframe img {
+  border-style: none;
+}
+#chat-ui-mainframe svg:not(:root) {
+  overflow: hidden;
+}
+#chat-ui-mainframe code,
+#chat-ui-mainframe kbd,
+#chat-ui-mainframe pre,
+#chat-ui-mainframe samp {
+  font-family: monospace, monospace;
+  /* 1 */
+  font-size: 1em;
+  /* 2 */
+}
+#chat-ui-mainframe figure {
+  margin: 1em 40px;
+}
+#chat-ui-mainframe hr {
+  box-sizing: content-box;
+  /* 1 */
+  height: 0;
+  /* 1 */
+  overflow: visible;
+  /* 2 */
+}
+#chat-ui-mainframe button,
+#chat-ui-mainframe input,
+#chat-ui-mainframe select,
+#chat-ui-mainframe textarea {
+  font: inherit;
+  /* 1 */
+  margin: 0;
+  /* 2 */
+}
+#chat-ui-mainframe optgroup {
+  font-weight: bold;
+}
+#chat-ui-mainframe button,
+#chat-ui-mainframe input {
+  /* 1 */
+  overflow: visible;
+}
+#chat-ui-mainframe button,
+#chat-ui-mainframe select {
+  /* 1 */
+  text-transform: none;
+}
+#chat-ui-mainframe button,
+#chat-ui-mainframe html [type="button"],
+#chat-ui-mainframe [type="reset"],
+#chat-ui-mainframe [type="submit"] {
+  -webkit-appearance: button;
+  /* 2 */
+}
+#chat-ui-mainframe button::-moz-focus-inner,
+#chat-ui-mainframe [type="button"]::-moz-focus-inner,
+#chat-ui-mainframe [type="reset"]::-moz-focus-inner,
+#chat-ui-mainframe [type="submit"]::-moz-focus-inner {
+  border-style: none;
+  padding: 0;
+}
+#chat-ui-mainframe button:-moz-focusring,
+#chat-ui-mainframe [type="button"]:-moz-focusring,
+#chat-ui-mainframe [type="reset"]:-moz-focusring,
+#chat-ui-mainframe [type="submit"]:-moz-focusring {
+  outline: 1px dotted ButtonText;
+}
+#chat-ui-mainframe fieldset {
+  border: 1px solid #c0c0c0;
+  margin: 0 2px;
+  padding: 0.35em 0.625em 0.75em;
+}
+#chat-ui-mainframe legend {
+  box-sizing: border-box;
+  /* 1 */
+  color: inherit;
+  /* 2 */
+  display: table;
+  /* 1 */
+  max-width: 100%;
+  /* 1 */
+  padding: 0;
+  /* 3 */
+  white-space: normal;
+  /* 1 */
+}
+#chat-ui-mainframe textarea {
+  overflow: auto;
+}
+#chat-ui-mainframe [type="checkbox"],
+#chat-ui-mainframe [type="radio"] {
+  box-sizing: border-box;
+  /* 1 */
+  padding: 0;
+  /* 2 */
+}
+#chat-ui-mainframe [type="number"]::-webkit-inner-spin-button,
+#chat-ui-mainframe [type="number"]::-webkit-outer-spin-button {
+  height: auto;
+}
+#chat-ui-mainframe [type="search"] {
+  -webkit-appearance: textfield;
+  /* 1 */
+  outline-offset: -2px;
+  /* 2 */
+}
+#chat-ui-mainframe [type="search"]::-webkit-search-cancel-button,
+#chat-ui-mainframe [type="search"]::-webkit-search-decoration {
+  -webkit-appearance: none;
+}
+#chat-ui-mainframe ::-webkit-input-placeholder {
+  color: inherit;
+  opacity: 0.54;
+}
+#chat-ui-mainframe ::-webkit-file-upload-button {
+  -webkit-appearance: button;
+  /* 1 */
+  font: inherit;
+  /* 2 */
+}
+#chat-ui-mainframe:before,
+#chat-ui-mainframe:after {
+  content: "";
+  position: absolute;
+  z-index: -1;
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+  top: 5px;
+  bottom: 0;
+  left: 0;
+  right: 0;
+}
+#chat-ui-mainframe:after {
+  right: 10px;
+  left: auto;
+  transform: skew(8deg) rotate(3deg);
+}
+#chat-ui-mainframe.chat-ui-mainframe_open {
+  display: block;
+}
+#chat-ui-mainframe .chat-ui-dialog-container {
+  position: absolute;
+  top: 80px;
+  bottom: 40px;
+  left: 0;
+  right: 0;
+}
+#chat-ui-mainframe .chat-ui-input-container {
+  position: absolute;
+  height: 40px;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  box-shadow: 0px -3px 10px -5px rgba(0, 0, 0, 0.26);
+}
