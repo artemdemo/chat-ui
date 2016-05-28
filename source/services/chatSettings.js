@@ -25,7 +25,12 @@ export const chatSettings = (() => {
         `,
         // Updated sanitize options
         sanitizeOptions: {
-            allowedTags: sanitizeHtml.defaults.allowedTags.concat(['img'])
+            allowedTags: sanitizeHtml.defaults.allowedTags.concat(['img']),
+            allowedAttributes: {
+                a: sanitizeHtml.defaults.allowedAttributes.a,
+                img: sanitizeHtml.defaults.allowedAttributes.img.concat(['class']),
+                div: ['class']
+            }
         }
     };
 

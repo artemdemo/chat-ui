@@ -4,6 +4,8 @@
 
 Module for Chat UI representation
 
+![alt tag](https://github.com/artemdemo/chat-ui/blob/master/img/chat-themes.png)
+
 ### Developing
 
 * ES6

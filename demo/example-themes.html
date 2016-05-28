@@ -52,6 +52,9 @@
             background-color: #ffffff;
             border-radius: 8px;
         }
+        .bubble-image {
+            width: 100%;
+        }
     </style>
 
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.4.0/highlight.min.js"></script>
@@ -97,9 +100,12 @@ $(document).ready(function() {
         subtitle: 'consultant'
     }).render('#chat');
 
-    var chatIcon = document.getElementById('chat-icon');
+    var $chatIcon = $('#chat-icon');
 
-    chat.trigger('open-chat');
+    $chatIcon.click(function() {
+        chat.trigger('open-chat');
+        $chatIcon.hide();
+    });
 
     // chat.trigger('add-phrase', {side: 'chat', message:'Hello'});
     // chat.trigger('add-phrase', {message:'Hello'});
@@ -109,6 +115,9 @@ $(document).ready(function() {
     var chatMessage = function(msg) {
         if (msg === 'close') {
             chat.trigger('close-chat');
+        } else if (msg === 'image') {
+            var imgNumber = Math.floor(Math.random() * 3) + 1;
+            chat.trigger('add-phrase', '&lt;img class="bubble-image" src="./image-0' + imgNumber + '.jpg"&gt;');
         } else if (msg === 'clear') {
             chat.trigger('clear-dialog');
         } else if (!timeoutId) {
@@ -123,12 +132,23 @@ $(document).ready(function() {
             }, waitTime);
         }
     };
-    chatMessage();
+
+    chat.trigger('add-phrase', '<img src="./smile-hi.gif">');
+    chat.trigger('add-phrase', [
+        'You can use different commands:',
+        '&lt;ul&gt;',
+        '&lt;li&gt;image&lt;/li&gt;',
+        '&lt;li&gt;clear&lt;/li&gt;',
+        '&lt;li&gt;close&lt;/li&gt;',
+        '&lt;/ul&gt;',
+        'Just type them in input below'
+    ].join(''));
+
     chat.on('user-send-message', chatMessage);
 
     chat.on('chat-closed', function(data) {
         console.log('chat-closed', data);
-        chatIcon.style.display = 'block';
+        $chatIcon.show();
     });
 });
         </code>
@@ -214,6 +234,9 @@ $(document).ready(function() {
         var chatMessage = function(msg) {
             if (msg === 'close') {
                 chat.trigger('close-chat');
+            } else if (msg === 'image') {
+                var imgNumber = Math.floor(Math.random() * 3) + 1;
+                chat.trigger('add-phrase', '<img class="bubble-image" src="./image-0' + imgNumber + '.jpg">');
             } else if (msg === 'clear') {
                 chat.trigger('clear-dialog');
             } else if (!timeoutId) {
@@ -230,6 +253,15 @@ $(document).ready(function() {
         };
 
         chat.trigger('add-phrase', '<img src="./smile-hi.gif">');
+        chat.trigger('add-phrase', [
+            'You can use different commands:',
+            '<ul>',
+            '<li>image</li>',
+            '<li>clear</li>',
+            '<li>close</li>',
+            '</ul>',
+            'Just type them in input below'
+        ].join(''));
 
         chat.on('user-send-message', chatMessage);
 
