@@ -1,0 +1,85 @@
+.chat-ui-clearfix:after {
+  content: '';
+  clear: both;
+  display: table;
+}
+#chat-ui-mainframe .chat-ui-dialog-container {
+  top: 70px;
+  background-color: #364456;
+}
+#chat-ui-header {
+  background-color: #343D4E;
+  border-bottom: 1px solid #2D333E;
+}
+#chat-ui-header .chat-ui-header__image {
+  width: 60px;
+  height: 60px;
+  border-color: #626977;
+}
+.chat-ui-input-container {
+  background-color: #607D8D;
+}
+#chat-ui-input .chat-ui-input__input-field {
+  border: none;
+  outline: none;
+  color: #ffffff;
+  background-color: #607D8D;
+}
+#chat-ui-input .chat-ui-input__send {
+  border: none;
+  color: white;
+  outline: none;
+  background-color: #4f6775;
+}
+#chat-ui-dialog {
+  background: linear-gradient(#364456 30%, transparent) 0 0, radial-gradient(ellipse 59% 5px at 50% 15%, rgba(0, 0, 0, 0.2) 0%, rgba(0, 0, 0, 0) 100%) 0 0, linear-gradient(transparent, #364456 30%) bottom, radial-gradient(ellipse 59% 5px at 50% 85%, rgba(0, 0, 0, 0.08) 0%, rgba(0, 0, 0, 0) 100%) bottom;
+}
+#chat-ui-dialog::-webkit-scrollbar-track {
+  background-color: #456172;
+  border-left: 1px solid #456172;
+}
+#chat-ui-dialog::-webkit-scrollbar-thumb {
+  background-color: #364b59;
+}
+#chat-ui-dialog::-webkit-scrollbar-thumb:hover {
+  background-color: #2c3e49;
+}
+#chat-ui-dialog .chat-ui-dialog-bubble {
+  position: relative;
+  border: 0;
+  padding: 5px 7px;
+  color: #ffffff;
+  box-shadow: 0 3px 0 -1px rgba(0, 0, 0, 0.08);
+}
+#chat-ui-dialog .chat-ui-dialog-bubble:before {
+  content: '';
+  position: absolute;
+  width: 0;
+  height: 0;
+  top: 5px;
+}
+#chat-ui-dialog .chat-ui-dialog-bubble_chat {
+  margin-left: 6px;
+}
+#chat-ui-dialog .chat-ui-dialog-bubble_chat:before {
+  left: -6px;
+  border-top: 6px solid transparent;
+  border-bottom: 6px solid transparent;
+  border-right: 6px solid #4B5B71;
+}
+#chat-ui-dialog .chat-ui-dialog-bubble_user {
+  margin-right: 6px;
+}
+#chat-ui-dialog .chat-ui-dialog-bubble_user:before {
+  right: -6px;
+  border-top: 6px solid transparent;
+  border-bottom: 6px solid transparent;
+  border-left: 6px solid #5D7B92;
+}
+#chat-ui-dialog .chat-ui-dialog-bubble_chat {
+  background-color: #4B5B71;
+}
+#chat-ui-dialog .chat-ui-dialog-bubble_user {
+  color: #ffffff;
+  background-color: #5D7B92;
+}
