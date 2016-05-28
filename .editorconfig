@@ -1,0 +1,12 @@
+# http://editorconfig.org
+root = true
+
+[*]
+end_of_line = lf
+insert_final_newline = true
+
+[*.{js,es6,jsx,ts,tsx,py,html,css,less,sass,php}]
+indent_style = space
+indent_size = 4
+charset = utf-8
+trim_trailing_whitespace = true
