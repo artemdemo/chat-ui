@@ -1,5 +1,6 @@
 import {LIB_NAME} from '../constants/general';
 import {ADD_PHRASE, SIDE_USER, USER_SEND_MESSAGE} from '../constants/dialog';
+import {OPEN_CHAT} from '../constants/header';
 import {templateEngine} from '../services/templateEngine';
 import {templateTreeRender} from '../services/templateTreeRender';
 import {eventEmitter} from '../services/eventEmitter';
@@ -19,6 +20,16 @@ export const input = (() => {
         </div>
     `;
 
+    let inputEl = null;
+
+    const addEvents = () => {
+        eventEmitter.on(OPEN_CHAT, () => {
+            setTimeout(() => {
+                inputEl.focus();
+            });
+        });
+    };
+
     const onSubmit = (event) => {
         event.preventDefault();
         if (inputEl.value !== '') {
@@ -30,8 +41,6 @@ export const input = (() => {
             inputEl.value = '';
         }
     };
-
-    let inputEl = null;
 
     return {
         renderElement: () => {
@@ -51,11 +60,8 @@ export const input = (() => {
             if ($$inputEl) {
                 inputEl = $$inputEl[0];
             }
+            addEvents();
             return inputFormRendered;
-        },
-
-        setFocus: () => {
-            inputEl.focus();
         }
     };
 })();

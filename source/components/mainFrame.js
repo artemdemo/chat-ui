@@ -56,7 +56,6 @@ export const mainFrame = () => {
 
         eventEmitter.on(OPEN_CHAT, () => {
             domHelper.addClass(mainFrameEl, openChatClass);
-            input.setFocus();
         });
     };
 
