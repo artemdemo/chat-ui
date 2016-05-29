@@ -43,10 +43,10 @@ export const input = (() => {
                 form: {
                     id,
                     innerHTML: templateEngine(innerTemplate, data),
-                    ref: 'inputForm'
+                    ref: 'inputForm',
+                    submit: onSubmit
                 }
             });
-            inputFormRendered.refs.inputForm.addEventListener('submit', onSubmit);
             const $$inputEl = inputFormRendered.refs.inputForm.getElementsByClassName(inputClass);
             if ($$inputEl) {
                 inputEl = $$inputEl[0];

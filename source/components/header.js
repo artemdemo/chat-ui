@@ -38,10 +38,9 @@ export const header = (() => {
                 div: {
                     id,
                     innerHTML: templateEngine(innerTemplate, data),
-                    ref: 'header'
+                    click: onClose
                 }
             });
-            renderedHeader.refs.header.addEventListener('click', onClose);
             return renderedHeader;
         }
     };
