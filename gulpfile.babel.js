@@ -3,6 +3,8 @@ import gutil from 'gulp-util';
 import less from 'gulp-less';
 import rename from 'gulp-rename';
 import webpack from 'webpack';
+import del from 'del';
+import cleanCSS from 'gulp-clean-css';
 import webpackConfig from './webpack.config';
 import yargs from 'yargs';
 
@@ -15,8 +17,16 @@ const args = yargs
         }
     }).argv;
 
+let libFilename = 'chat-ui';
+let buildTasks = ['js', 'less'];
+
 if (args.pack) {
     webpackConfig.plugins.push(new webpack.optimize.UglifyJsPlugin({compress: {warnings: false}, mangle: false}));
+    webpackConfig.output.filename = libFilename + '.min.js';
+    buildTasks.unshift('clean');
+    buildTasks.push('minify-css');
+} else {
+    webpackConfig.output.filename = libFilename + '.js';
 }
 
 const compiler = webpack(webpackConfig);
@@ -61,7 +71,7 @@ gulp.task('js-watch', () => {
     });
 });
 
-gulp.task('less', () => {
+gulp.task('less', ['clean'], () => {
     const errorHandling = function(err) {
         // Handle less errors, but do not stop watch task
         gutil.log(gutil.colors.red.bold('[Less error]'));
@@ -96,9 +106,26 @@ gulp.task('less', () => {
         .pipe(gulp.dest('./lib'));
 });
 
+gulp.task('minify-css', ['clean', 'less'], function() {
+    return gulp.src('lib/*.css')
+        .pipe(cleanCSS({compatibility: 'ie8'}))
+        .pipe(rename({
+            suffix: '.min'
+        }))
+        .pipe(gulp.dest('lib'));
+});
+
+gulp.task('clean', function(callback) {
+    del([
+        'lib/*.css'
+    ]).then(function() {
+        callback();
+    });
+});
+
 gulp.task('less-watch', () => {
     gulp.watch('./source/less/**/*.less', ['less']);
 });
 
-gulp.task('build', ['js', 'less']);
+gulp.task('build', buildTasks);
 gulp.task('watch', ['js-watch', 'less', 'less-watch']);

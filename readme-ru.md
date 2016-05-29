@@ -6,7 +6,7 @@
 
 ![alt tag](https://github.com/artemdemo/chat-ui/blob/master/img/chat-themes.png)
 
-### Разработка
+### Технологии
 
 * ES6
 * Babel
@@ -14,7 +14,21 @@
 * Gulp
 * Less
 
-### Code quality
+### Разработка
+
+Watch function for all files
+
+```bash
+$ npm run watch
+```
+
+Build regular and minified versions of the library files.
+
+```bash
+$ npm run build
+```
+
+### Качество кода
 
 * eslint, based on airbnb specs
 

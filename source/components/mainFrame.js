@@ -37,6 +37,7 @@ export const mainFrame = () => {
             ]
         }
     };
+    const openChatClass = `${LIB_NAME}-mainframe_open`;
 
     const updateContainer = (containerName, newElement) => {
         if (mainFrameParts.indexOf(containerName) > -1) {
@@ -47,8 +48,6 @@ export const mainFrame = () => {
     };
 
     const addEvents = (mainFrameEl) => {
-        const openChatClass = `${LIB_NAME}-mainframe_open`;
-
         eventEmitter.on(CLOSE_CHAT, (data) => {
             const closeSource = data && data.source ? data.source : CHAT_CLOSED_SOURCE_CHAT;
             domHelper.removeClass(mainFrameEl, openChatClass);

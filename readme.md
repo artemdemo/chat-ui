@@ -6,13 +6,27 @@ Module for Chat UI representation
 
 ![alt tag](https://github.com/artemdemo/chat-ui/blob/master/img/chat-themes.png)
 
-### Developing
+### Technologies
 
 * ES6
 * Babel
 * Webpack
 * Gulp
 * Less
+
+### Developing
+
+Watch function for all files
+
+```bash
+$ npm run watch
+```
+
+Build regular and minified versions of the library files.
+
+```bash
+$ npm run build
+```
 
 ### Code quality
 

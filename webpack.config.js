@@ -5,7 +5,8 @@ module.exports = {
     devtool: 'source-map',
     output: {
         path: __dirname + '/lib/',
-        filename: 'chat-ui.js',
+        // filename will be added in gulpfile
+        // filename: 'chat-ui.js',
         library: 'ChatUI',
         libraryTarget: 'umd',
         umdNamedDefine: true
