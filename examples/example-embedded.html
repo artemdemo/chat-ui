@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <title>Chat-UI | Example - Embedded</title>
-    <script async src="../chat-lib/chat-ui.js"></script>
-    <link href="../chat-lib/chat-ui.css" rel="stylesheet" media="all" />
+    <script src="../lib/chat-ui.js"></script>
+    <link href="../lib/chat-ui.css" rel="stylesheet" media="all" />
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.4.0/styles/darkula.min.css">
     <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet">
@@ -118,10 +118,6 @@ $(document).ready(function() {
 
     chat.on('user-send-message', chatMessage);
 
-    chat.on('chat-closed', function(data) {
-        console.log('chat-closed', data);
-        chatIcon.style.display = 'block';
-    });
 });
             </code>
         </pre>
@@ -191,11 +187,6 @@ $(document).ready(function() {
         chat.trigger('add-phrase', '<img src="./smile-hi.gif">');
 
         chat.on('user-send-message', chatMessage);
-
-        chat.on('chat-closed', function(data) {
-            console.log('chat-closed', data);
-            chatIcon.style.display = 'block';
-        });
     });
 </script>
 </body>
