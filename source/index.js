@@ -1,20 +1,12 @@
 import {mainFrame} from './components/mainFrame';
-import {dialog} from './components/dialog';
+import {Dialog} from './components/Dialog';
 import {eventEmitter} from './services/eventEmitter';
-import {ADD_PHRASE, IS_TYPING} from './constants/dialog';
+import {chatSettings} from './services/chatSettings';
+import {componentRender} from './services/componentRender';
 
 const ChatUI = (chatData) => {
 
     const addMainFrameEvents = () => {};
-
-    const addDialogEvents = () => {
-        eventEmitter.addListener(ADD_PHRASE, dialog.addPhrase);
-        eventEmitter.addListener(IS_TYPING, () => {
-            dialog.addPhrase({
-                type: IS_TYPING
-            });
-        });
-    };
 
     return {
         render: (querySelector, componentName) => {
@@ -22,17 +14,17 @@ const ChatUI = (chatData) => {
             if (!baseEl) {
                 throw new Error(`Given selector ${querySelector} is not match to any element`);
             }
+            chatSettings.setSettings(chatData);
             switch (componentName) {
                 case 'dialog':
-                    baseEl.appendChild(dialog.renderElement({}).fragment);
+                    baseEl.appendChild(componentRender(Dialog));
                     break;
                 case 'mainFrame':
                 default:
                     let mainFrameObj = mainFrame();
-                    baseEl.appendChild(mainFrameObj.renderElement(chatData).fragment);
+                    baseEl.appendChild(mainFrameObj.renderElement({}).fragment);
                     break;
             }
-            addDialogEvents();
             return {
                 on: (eventName, callback) => {
                     eventEmitter.addListener(eventName, callback);

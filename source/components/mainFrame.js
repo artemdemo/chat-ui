@@ -1,9 +1,10 @@
 import {LIB_NAME} from '../constants/general';
 import {CLOSE_CHAT, OPEN_CHAT, CHAT_CLOSED, CHAT_CLOSED_SOURCE_CHAT} from '../constants/header';
 import {templateTreeRender} from '../services/templateTreeRender';
-import {header} from '../components/header';
-import {dialog} from '../components/dialog';
-import {input} from '../components/input';
+import {componentRender} from '../services/componentRender';
+import {Header} from '../components/Header';
+import {Dialog} from '../components/Dialog';
+import {Input} from '../components/Input';
 import {eventEmitter} from '../services/eventEmitter';
 import {domHelper} from '../services/domHelper';
 
@@ -60,12 +61,12 @@ export const mainFrame = () => {
     };
 
     return {
-        renderElement: (newSettings) => {
+        renderElement: () => {
             if (!renderedMainFrame) {
                 renderedMainFrame = templateTreeRender(mainFrameObject);
-                updateContainer('header', header.renderElement(newSettings).fragment);
-                updateContainer('dialog', dialog.renderElement({}).fragment);
-                updateContainer('input', input.renderElement({}).fragment);
+                updateContainer('dialog', componentRender(Dialog));
+                updateContainer('header', componentRender(Header));
+                updateContainer('input', componentRender(Input));
                 addEvents(renderedMainFrame.refs.mainframe);
                 return renderedMainFrame;
             }
