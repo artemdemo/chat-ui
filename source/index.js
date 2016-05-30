@@ -1,12 +1,10 @@
-import {mainFrame} from './components/mainFrame';
+import {MainFrame} from './components/MainFrame';
 import {Dialog} from './components/Dialog';
 import {eventEmitter} from './services/eventEmitter';
 import {chatSettings} from './services/chatSettings';
 import {componentRender} from './services/componentRender';
 
 const ChatUI = (chatData) => {
-
-    const addMainFrameEvents = () => {};
 
     return {
         render: (querySelector, componentName) => {
@@ -21,8 +19,7 @@ const ChatUI = (chatData) => {
                     break;
                 case 'mainFrame':
                 default:
-                    let mainFrameObj = mainFrame();
-                    baseEl.appendChild(mainFrameObj.renderElement({}).fragment);
+                    baseEl.appendChild(componentRender(MainFrame));
                     break;
             }
             return {
