@@ -1,3 +1,5 @@
+import {componentRender} from '../services/componentRender';
+
 /**
  * Template Tree Render
  * {
@@ -50,6 +52,9 @@ export const templateTreeRender = (tree) => {
                     break;
                 case key === 'ref':
                     refs[elementData[key]] = element;
+                    break;
+                case key === 'component':
+                    element.appendChild(componentRender(elementData[key]));
                     break;
                 case events.indexOf(key) > -1:
                     element.addEventListener(key, elementData[key]);

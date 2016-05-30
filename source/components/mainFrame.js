@@ -1,7 +1,6 @@
 import {LIB_NAME} from '../constants/general';
 import {CLOSE_CHAT, OPEN_CHAT, CHAT_CLOSED, CHAT_CLOSED_SOURCE_CHAT} from '../constants/header';
 import {templateTreeRender} from '../services/templateTreeRender';
-import {componentRender} from '../services/componentRender';
 import {Header} from '../components/Header';
 import {Dialog} from '../components/Dialog';
 import {Input} from '../components/Input';
@@ -11,7 +10,6 @@ import {domHelper} from '../services/domHelper';
 let renderedMainFrame = null;
 
 export const mainFrame = () => {
-    const mainFrameParts = ['header', 'dialog', 'input'];
     const mainFrameObject = {
         div: {
             id: `${LIB_NAME}-mainframe`,
@@ -20,33 +18,25 @@ export const mainFrame = () => {
                 {
                     div: {
                         className: `${LIB_NAME}-header-container`,
-                        ref: 'header'
+                        component: Header
                     }
                 },
                 {
                     div: {
                         className: `${LIB_NAME}-dialog-container`,
-                        ref: 'dialog'
+                        component: Dialog
                     }
                 },
                 {
                     div: {
                         className: `${LIB_NAME}-input-container`,
-                        ref: 'input'
+                        component: Input
                     }
                 }
             ]
         }
     };
     const openChatClass = `${LIB_NAME}-mainframe_open`;
-
-    const updateContainer = (containerName, newElement) => {
-        if (mainFrameParts.indexOf(containerName) > -1) {
-            renderedMainFrame.refs[containerName].appendChild(newElement);
-            return renderedMainFrame.refs[containerName];
-        }
-        throw new Error(`There is no "${containerName}" container in mainFrame`);
-    };
 
     const addEvents = (mainFrameEl) => {
         eventEmitter.on(CLOSE_CHAT, (data) => {
@@ -64,9 +54,6 @@ export const mainFrame = () => {
         renderElement: () => {
             if (!renderedMainFrame) {
                 renderedMainFrame = templateTreeRender(mainFrameObject);
-                updateContainer('dialog', componentRender(Dialog));
-                updateContainer('header', componentRender(Header));
-                updateContainer('input', componentRender(Input));
                 addEvents(renderedMainFrame.refs.mainframe);
                 return renderedMainFrame;
             }
