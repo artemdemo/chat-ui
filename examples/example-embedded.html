@@ -48,28 +48,44 @@
             left: 0;
             background: linear-gradient(to bottom, rgba(43,43,43,0) 0%,rgb(0, 0, 0) 100%);
         }
+        .input-table {
+            display: table;
+            width: 100%;
+        }
+        .input-table__cell {
+            display: table-cell;
+            padding: 3px;
+        }
+        .input-table__input-field {
+            width: 100%;
+            padding: 3px 5px;
+        }
+        .input-table__send {
+            width: 100%;
+            padding: 3px;
+        }
     </style>
 
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.4.0/highlight.min.js"></script>
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.4.0/languages/javascript.min.js"></script>
 </head>
 <body>
-    <div class="container">
-        <h3>Embedded chat</h3>
-        <div id="chat" class="input-container"></div>
-        <div id="input" class="input-container">
-            <form class="input-table">
-                <div class="input-table__cell">
-                    <input type="text" class="input-table__input-field" placeholder="Enter your message">
-                </div>
-                <div class="input-table__cell">
-                    <button type="submit" class="input-table__send">Send</button>
-                </div>
-            </form>
-        </div>
+<div class="container">
+    <h3>Embedded chat</h3>
+    <div id="chat" class="input-container"></div>
+    <div id="input" class="input-container">
+        <form class="input-table">
+            <div class="input-table__cell">
+                <input type="text" class="input-table__input-field" placeholder="Enter your message">
+            </div>
+            <div class="input-table__cell">
+                <button type="submit" class="input-table__send">Send</button>
+            </div>
+        </form>
     </div>
+</div>
 
-    <div class="container">
+<div class="container">
         <pre class="code-example">
             <code class="code-example__code code-example__code_short javascript">
 $(document).ready(function() {
@@ -87,9 +103,11 @@ $(document).ready(function() {
         '^_^'
     ];
 
-    var chat = ChatUI().render('#chat', 'dialog');
-
-    var chatIcon = document.getElementById('chat-icon');
+    var chat = ChatUI({
+        title: 'John Doe',
+        avatar: './john-doe.jpg',
+        subtitle: 'consultant'
+    }).render('#chat', 'dialog');
 
     chat.trigger('open-chat');
 
@@ -118,21 +136,28 @@ $(document).ready(function() {
 
     chat.on('user-send-message', chatMessage);
 
+    var $input = $('.input-table__input-field');
+
+    $('.input-table').on('submit', function(event) {
+        event.preventDefault();
+        chat.trigger('add-phrase', {side: 'user', message: $input.val()});
+        $input.val('');
+    });
 });
             </code>
         </pre>
 
-        <button type="button" class="btn btn-info show-full-code">
-            Show full code
-        </button>
+    <button type="button" class="btn btn-info show-full-code">
+        Show full code
+    </button>
 
-    </div>
+</div>
 
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
 <script>
     hljs.initHighlightingOnLoad();
 
-    $('.show-full-code').click(function() {
+    $('.show-full-code').on('click', function() {
         $('.code-example__code').toggleClass('code-example__code_short')
     });
 
@@ -157,12 +182,8 @@ $(document).ready(function() {
             subtitle: 'consultant'
         }).render('#chat', 'dialog');
 
-        var chatIcon = document.getElementById('chat-icon');
-
         chat.trigger('open-chat');
 
-        // chat.trigger('add-phrase', {side: 'chat', message:'Hello'});
-        // chat.trigger('add-phrase', {message:'Hello'});
         chat.trigger('add-phrase', 'Hello');
 
         var timeoutId = null;
@@ -187,6 +208,14 @@ $(document).ready(function() {
         chat.trigger('add-phrase', '<img src="./smile-hi.gif">');
 
         chat.on('user-send-message', chatMessage);
+
+        var $input = $('.input-table__input-field');
+
+        $('.input-table').on('submit', function(event) {
+            event.preventDefault();
+            chat.trigger('add-phrase', {side: 'user', message: $input.val()});
+            $input.val('');
+        });
     });
 </script>
 </body>
