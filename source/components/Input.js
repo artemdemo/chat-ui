@@ -1,6 +1,6 @@
 import {Component} from './Component';
 import {LIB_NAME} from '../constants/general';
-import {ADD_PHRASE, SIDE_USER, USER_SEND_MESSAGE} from '../constants/dialog';
+import {ADD_PHRASE, SIDE_USER} from '../constants/dialog';
 import {OPEN_CHAT} from '../constants/header';
 import {templateEngine} from '../services/templateEngine';
 import {eventEmitter} from '../services/eventEmitter';
@@ -20,7 +20,6 @@ export class Input extends Component {
                     side: SIDE_USER,
                     message: this.inputEl.value
                 });
-                eventEmitter.emit(USER_SEND_MESSAGE, this.inputEl.value);
                 this.inputEl.value = '';
             }
         };

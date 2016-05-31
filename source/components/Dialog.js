@@ -1,7 +1,7 @@
 import sanitizeHtml from 'sanitize-html';
 import {Component} from './Component';
 import {LIB_NAME} from '../constants/general';
-import {IS_TYPING, SIDE_USER, SIDE_CHAT, CLEAR_DIALOG, ADD_PHRASE} from '../constants/dialog';
+import {IS_TYPING, SIDE_USER, SIDE_CHAT, CLEAR_DIALOG, ADD_PHRASE, USER_SEND_MESSAGE} from '../constants/dialog';
 import {templateEngine} from '../services/templateEngine';
 import {componentRender} from '../services/componentRender';
 import {dialogList} from '../services/dialogList';
@@ -57,6 +57,9 @@ export class Dialog extends Component {
                     temporaryPhrase.ref.parentNode.removeChild(temporaryPhrase.ref);
                 }
                 this.dialogListEl.appendChild(bubbleComponent);
+            }
+            if (side === SIDE_USER) {
+                eventEmitter.emit(USER_SEND_MESSAGE, data.message);
             }
             this.scrollDialogDown();
         };
