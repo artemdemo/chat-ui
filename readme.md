@@ -58,7 +58,6 @@ var chat = ChatUI(settings).render(tagId);
 * `sendText` - text for "send" button in chat window
 * `inputPlaceholder` - placeholder text on the input
 * `isTyping` - message that operator is typing
-* `sanitizeOptions` - updated sanitize options. I'm using [sanitize-html](https://www.npmjs.com/package/sanitize-html)
 
 Default settings:
 
@@ -75,15 +74,7 @@ let settings = {
             <span class="dots-loading__dot">&#8226;</span>
             <span class="dots-loading__dot">&#8226;</span>
         </div>
-    `,
-    sanitizeOptions: {
-        allowedTags: sanitizeHtml.defaults.allowedTags.concat(['img']),
-        allowedAttributes: {
-            a: sanitizeHtml.defaults.allowedAttributes.a,
-            img: sanitizeHtml.defaults.allowedAttributes.img.concat(['class']),
-            div: ['class']
-        }
-    }
+    `
 }
 ```
 
@@ -174,5 +165,4 @@ $ npm run build
 ### Libraries
 
 * EventEmitter - evented JavaScript for the browser [github:wolfy87-eventemitter](https://github.com/Olical/EventEmitter), [npm:wolfy87-eventemitter](https://www.npmjs.com/package/wolfy87-eventemitter)
-* sanitize-html - Clean up user-submitted HTML, preserving whitelisted elements and whitelisted attributes on a per-element basis,
-[npm:sanitize-html](https://www.npmjs.com/package/sanitize-html)
+* google caja html sanitizer - https://github.com/google/caja/blob/master/src/com/google/caja/plugin/html-sanitizer.js

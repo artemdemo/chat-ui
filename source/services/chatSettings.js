@@ -1,4 +1,3 @@
-import sanitizeHtml from 'sanitize-html';
 import {eventEmitter} from './eventEmitter';
 import {LIB_NAME} from '../constants/general';
 import {SETTINGS_CHANGED} from '../constants/settings';
@@ -22,16 +21,7 @@ export const chatSettings = (() => {
                 <span class="dots-loading__dot">&#8226;</span>
                 <span class="dots-loading__dot">&#8226;</span>
             </div>
-        `,
-        // Updated sanitize options
-        sanitizeOptions: {
-            allowedTags: sanitizeHtml.defaults.allowedTags.concat(['img']),
-            allowedAttributes: {
-                a: sanitizeHtml.defaults.allowedAttributes.a,
-                img: sanitizeHtml.defaults.allowedAttributes.img.concat(['class']),
-                div: ['class']
-            }
-        }
+        `
     };
 
     return {

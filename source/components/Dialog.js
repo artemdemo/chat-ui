@@ -1,4 +1,4 @@
-import sanitizeHtml from 'sanitize-html';
+
 import {Component} from './Component';
 import {LIB_NAME} from '../constants/general';
 import {IS_TYPING, SIDE_USER, SIDE_CHAT, CLEAR_DIALOG, ADD_PHRASE, USER_SEND_MESSAGE} from '../constants/dialog';
@@ -7,6 +7,7 @@ import {componentRender} from '../services/componentRender';
 import {dialogList} from '../services/dialogList';
 import {chatSettings} from '../services/chatSettings';
 import {eventEmitter} from '../services/eventEmitter';
+import {sanitize} from '../services/sanitize';
 import {DialogBubble} from './DialogBubble';
 
 export class Dialog extends Component {
@@ -40,10 +41,7 @@ export class Dialog extends Component {
             if (data.type === IS_TYPING) {
                 message = chatSettings.getProperty('isTyping');
             } else {
-                message = sanitizeHtml(
-                    typeof data === 'string' ? data : data.message,
-                    chatSettings.getProperty('sanitizeOptions')
-                );
+                message = sanitize(typeof data === 'string' ? data : data.message);
             }
             const bubbleComponent = componentRender(DialogBubble, {
                 side,

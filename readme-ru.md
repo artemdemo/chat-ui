@@ -58,7 +58,6 @@ var chat = ChatUI(settings).render(tagId);
 * `sendText` - текст кнопки "send" в окне чата
 * `inputPlaceholder` - placeholder text on the input
 * `isTyping` - текст (или html) сообщение, о том, что оператор печатает 
-* `sanitizeOptions` - настройки для санитизации сообщения. Я использую [sanitize-html](https://www.npmjs.com/package/sanitize-html)
 
 Настройки по-умолчанию:
 
@@ -75,15 +74,7 @@ let settings = {
             <span class="dots-loading__dot">&#8226;</span>
             <span class="dots-loading__dot">&#8226;</span>
         </div>
-    `,
-    sanitizeOptions: {
-        allowedTags: sanitizeHtml.defaults.allowedTags.concat(['img']),
-        allowedAttributes: {
-            a: sanitizeHtml.defaults.allowedAttributes.a,
-            img: sanitizeHtml.defaults.allowedAttributes.img.concat(['class']),
-            div: ['class']
-        }
-    }
+    `
 }
 ```
 
@@ -174,5 +165,4 @@ $ npm run build
 ### Библиотеки
 
 * Bean - an events api library [github:bean](https://github.com/fat/bean), [npm:bean](https://www.npmjs.com/package/bean)
-* sanitize-html - Clean up user-submitted HTML, preserving whitelisted elements and whitelisted attributes on a per-element basis,
-[npm:sanitize-html](https://www.npmjs.com/package/sanitize-html)
+* google caja html sanitizer - https://github.com/google/caja/blob/master/src/com/google/caja/plugin/html-sanitizer.js
