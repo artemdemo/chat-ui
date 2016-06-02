@@ -1,6 +1,6 @@
 {
   "name": "chat-ui",
-  "version": "1.0.0-alpha.1",
+  "version": "1.0.0-alpha.2",
   "description": "Chat UI",
   "main": "index.js",
   "scripts": {
